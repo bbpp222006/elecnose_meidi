@@ -24,7 +24,7 @@ def main():
             y_train += [key_dic[key]]
     x_train = np.array(x_train)
 
-    knn_neighbors = math.ceil(1.5*min([len(signals) for signals in train_data.values()]))
+    knn_neighbors = math.floor(1.5*min([len(signals) for signals in train_data.values()]))
     knn = KNeighborsClassifier(n_neighbors=knn_neighbors)
     knn.fit(x_train, y_train)
     knn_pre = knn.predict(test_data)
