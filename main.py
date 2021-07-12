@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from load_data import load_train, load_test
 from feature import *
 import math
-
+import json
 
 def main():
     train_data = load_train(train_path, num_sig=num_sig,enable_vis=1 if vis_feature else 0)
@@ -82,7 +82,12 @@ def main():
 if __name__ == "__main__":
     train_path = 'train'
     test_path = 'test'
-    num_sig = 8  # 传感器个数
+
+    filename = 'config.json'
+    with open(filename, encoding='utf-8') as file_obj:
+        names = json.load(file_obj)
+    num_sig = names['num_sig']
+
     vis_feature=int(input("""1 A类（透明）：纯净水、雪碧 、(白)醋、酒、糖水
 2 B类（茶色）：茶
 3 C类（浅黑）：可乐

@@ -2,19 +2,13 @@ import numpy as np
 import os
 from feature import *
 import re
+import json
 
-re_name_dic = {
-    '空': ['empty',1],
-    "茶": ["tea",2],
-    "咖啡": ["coffee",4],
-    "雪碧": ["spirit",1],
-    "可乐": ["cola",3],
-    "白醋": ["white_vinegar",1],
-    "老抽": ["dark_soysauce",4],
-    "生抽": ["soy_sauce",4],
-    "酒": ["wine",1],
-    "糖水": ["sugar",1],
-}
+
+filename='config.json'
+with open(filename, encoding='utf-8') as file_obj:
+    names = json.load(file_obj)
+re_name_dic=names['re_name_dic']
 
 num_vis_class = max([item_class[1]for item_class in list(re_name_dic.values())])
 
