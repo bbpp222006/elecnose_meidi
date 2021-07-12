@@ -8,7 +8,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-data_base/
 build/
 develop-eggs/
 dist/
@@ -114,3 +113,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Pycharm
+.idea/
+
+# data_base
+data_base/
