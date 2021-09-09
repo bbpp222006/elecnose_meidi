@@ -1,4 +1,6 @@
 import configparser, json
+import numpy as np
+
 
 a={"num_sig":8,
 "re_name_dic" : {
@@ -21,7 +23,6 @@ a={"num_sig":8,
 # with open(filename,'w', encoding='utf-8') as file_obj:
 #     json.dump(a,file_obj,ensure_ascii=False)
 #
-filename='config.json'
-with open(filename, encoding='utf-8') as file_obj:
-    names = json.load(file_obj)
-print(names)
+a=[1,2,3]
+b=np.repeat([a],4,axis=0)
+print(b)
