@@ -49,7 +49,7 @@ def load_train(raw_data_path,enable_vis=0):
 
             signal_dic = read_file_data(file_path)
             # enable_vis=
-            signal_dic["vis"] = enable_vis *(re_name_dic[item_regex][1]+np.random.randn(1)[0]*0.001)
+            signal_dic["vis"] = enable_vis *(re_name_dic[item_regex][1]+np.random.randn(1)[0]*0.001) #这里要加一点微小的扰动，不然lda拟合会出bug（不清楚原因）
             # raw_signal_samed=partial_fraction(raw_signal)
             # signal = np.concatenate([raw_signal_samed, 0.3*enable_vis*re_name_dic[item_regex][1]*np.ones([raw_signal_samed.shape[0],1])],axis=1)
 
