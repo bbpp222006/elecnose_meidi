@@ -5,11 +5,11 @@ from load_data import load_train, load_test
 from feature import *
 import math
 import json
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler,MinMaxScaler
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 def main():
-    train_data = load_train(train_path,enable_vis=1 if vis_feature else 0)
+    train_data = load_train(train_path,enable_vis=1. if vis_feature else 0.)
     test_data = load_test(test_path,vis_class=vis_feature)
     print('加载完成,开始lda拟合')
     x_train = []
@@ -26,7 +26,7 @@ def main():
             y_train += [key_dic[key]]
     x_train = np.array(x_train)
 
-    feaature_scaler = StandardScaler()
+    feaature_scaler = MinMaxScaler()
     x_train = feaature_scaler.fit_transform(x_train)
 
     # lda_neighbors = math.floor(1.5*min([len(signals) for signals in train_data.values()]))
@@ -34,6 +34,7 @@ def main():
     # lda.fit(x_train, y_train)
     lda = LinearDiscriminantAnalysis(n_components=2)
     lda.fit(x_train, y_train)
+    x_train_ = lda.transform(x_train)
 
     test_data_feature = get_feature(test_data)
     a = np.repeat([test_data_feature],repeats=test_data["data"].shape[0],axis=0)
@@ -65,7 +66,7 @@ def main():
     plt.yticks(np.arange(len(key_dic)), list(key_dic.keys()))
 
     ax1_1 = ax1.twinx()
-    test_data_show=StandardScaler().fit_transform(test_data['data'])
+    test_data_show=MinMaxScaler().fit_transform(test_data['data'])
     for i in range(num_sig):
         ax1_1.plot(
             np.arange(test_data_show.shape[0]),
@@ -81,7 +82,6 @@ def main():
     for i, key in enumerate(train_data):
         single_list = []
         for single in train_data[key]:
-
             single_list.append(get_feature(single))
         single_list = feaature_scaler.transform(single_list)
         new_sig = lda.transform(single_list)

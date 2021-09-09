@@ -4,7 +4,6 @@ from feature import *
 import re
 import json
 
-
 filename='config.json'
 with open(filename, encoding='utf-8') as file_obj:
     names = json.load(file_obj)
@@ -49,7 +48,8 @@ def load_train(raw_data_path,enable_vis=0):
             file_path = root + "/" + file
 
             signal_dic = read_file_data(file_path)
-            signal_dic["vis"] = enable_vis *re_name_dic[item_regex][1]
+            # enable_vis=
+            signal_dic["vis"] = enable_vis *(re_name_dic[item_regex][1]+np.random.randn(1)[0]*0.001)
             # raw_signal_samed=partial_fraction(raw_signal)
             # signal = np.concatenate([raw_signal_samed, 0.3*enable_vis*re_name_dic[item_regex][1]*np.ones([raw_signal_samed.shape[0],1])],axis=1)
 

@@ -49,6 +49,7 @@ def get_feature(signal_dic):
     vis_feature = signal_dic['vis']
     base_feature = get_base(signal_dic['data'])
     time_feture = get_sig_high_90_idx(signal_dic['data'],signal_dic['start_index'],max_feature)
-    sensetive_feature = max_feature/base_feature
-    feature=np.concatenate([max_feature,[vis_feature],base_feature,[time_feture],sensetive_feature])
+    sensetive_feature1 = max_feature/base_feature
+    sensetive_feature2 = max_feature - base_feature
+    feature=np.concatenate([max_feature,base_feature,[time_feture],sensetive_feature1,sensetive_feature2,[vis_feature]])
     return feature
