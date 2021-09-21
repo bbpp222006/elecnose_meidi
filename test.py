@@ -16,8 +16,6 @@ a={"num_sig":8,
     "糖水": ["sugar",1],
 }
 }
-
-
 #
 # filename='config.json'
 # with open(filename,'w', encoding='utf-8') as file_obj:
